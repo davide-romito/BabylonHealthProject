@@ -1,4 +1,4 @@
-package it.davideromito.crawler.retrieve;
+package it.davideromito.crawler.retrieve.link;
 
 import java.io.IOException;
 import java.util.Set;
