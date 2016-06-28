@@ -1,11 +1,9 @@
 package it.davideromito.crawler;
 
-import it.davideromito.crawler.converter.JSONConverter;
 import it.davideromito.crawler.model.Page;
-import it.davideromito.crawler.parsing.Parsing;
-import it.davideromito.crawler.parsing.jsoup.JsoupParsing;
-import it.davideromito.crawler.retrieve.Retrieve;
-import it.davideromito.crawler.retrieve.RetrieveImpl;
+import it.davideromito.crawler.retrieve.page.PagesRetriever;
+import it.davideromito.crawler.retrieve.link.Retrieve;
+import it.davideromito.crawler.retrieve.link.RetrieveImpl;
 
 
 import java.util.HashSet;
@@ -30,15 +28,20 @@ public class Crawler {
             setLink.addAll(retrieve.retrieveSetOfLinks(rootPage+s, "<a href=\"/conditions" ));
         }
 
-
-        Parsing parse = new JsoupParsing();
-        Set<Page> setPage = new HashSet<Page>();
+        Set<String> testLink = new HashSet<String>();
+        int i=0;
         for (String s : setLink){
-            Page p = parse.retrievePage(basePage+s);
-            System.out.println(p);
-            System.out.println(JSONConverter.toJSON(p));
-            setPage.add(p);
+            testLink.add(s);
+            i++;
+            if(i>11){
+                break;
+            }
         }
 
+        PagesRetriever pr = new PagesRetriever(basePage);
+        //Set<Page> pages = pr.retrievePages(setLink);
+        Set<Page> pages = pr.retrievePages(testLink);
+
+        System.out.println(pages);
     }
 }
