@@ -1,11 +1,9 @@
 package it.davideromito.crawler.save;
 
+import java.io.IOException;
 import java.util.Set;
 
-/**
- * Created by davideromito on 28/06/16.
- */
 public interface Save {
-    void saveSet(Set<String> setOfString);
-    void saveString(String string);
+    void saveSet(Set<String> setOfString) throws IOException;
+    void saveString(String string) throws IOException;
 }
