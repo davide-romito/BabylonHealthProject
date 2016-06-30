@@ -15,7 +15,7 @@ class PageRetrieverCallable implements Callable {
     private String url;
 
     public PageRetrieverCallable(String url) {
-        this.url = url;
+        this.url = url.trim();
     }
 
     public Page call() throws IOException {
