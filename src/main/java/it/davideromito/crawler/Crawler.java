@@ -1,9 +1,12 @@
 package it.davideromito.crawler;
 
+import it.davideromito.crawler.converter.JSONConverter;
 import it.davideromito.crawler.model.Page;
 import it.davideromito.crawler.retrieve.page.PagesRetriever;
 import it.davideromito.crawler.retrieve.link.Retrieve;
 import it.davideromito.crawler.retrieve.link.RetrieveImpl;
+import it.davideromito.crawler.save.FileSave;
+import it.davideromito.crawler.save.Save;
 
 
 import java.util.HashSet;
@@ -21,27 +24,27 @@ public class Crawler {
         String rootPage = basePage + "/Conditions/Pages/";
         String homepage = rootPage + "hub.aspx";
 
+        System.out.println("START RETRIEVE link from HOMEPAGE");
         Set<String> set = retrieve.retrieveSetOfLinks(homepage, "<a href=\"BodyMap.aspx");
+        System.out.println("END RETRIEVE link from HOMEPAGE");
 
+        System.out.println("START RETRIEVE link from VARIOUS PAGES");
         Set<String> setLink = new HashSet<String>();
         for (String s : set) {
             setLink.addAll(retrieve.retrieveSetOfLinks(rootPage+s, "<a href=\"/conditions" ));
         }
+        System.out.println("END RETRIEVE link from VARIOUS PAGES");
 
-        Set<String> testLink = new HashSet<String>();
-        int i=0;
-        for (String s : setLink){
-            testLink.add(s);
-            i++;
-            if(i>11){
-                break;
-            }
-        }
-
+        System.out.println("START RETRIEVE INFORMATION from VARIOUS PAGES");
         PagesRetriever pr = new PagesRetriever(basePage);
-        //Set<Page> pages = pr.retrievePages(setLink);
-        Set<Page> pages = pr.retrievePages(testLink);
+        Set<Page> pages = pr.retrievePages(setLink);
+        System.out.println("END RETRIEVE INFORMATION from VARIOUS PAGES");
 
-        System.out.println(pages);
+        System.out.println("START SAVE PHASE");
+        Save save = new FileSave("CRAWLER");
+        save.saveSet(JSONConverter.toJSON(pages));
+        System.out.println("END SAVE PHASE");
+
+
     }
 }
