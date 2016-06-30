@@ -17,6 +17,7 @@ public class FileSave implements Save {
     public FileSave(String filePath) throws IOException {
         file = new File(filePath);
         file.createNewFile();
+        System.out.println(file.getPath());
     }
 
     /**
