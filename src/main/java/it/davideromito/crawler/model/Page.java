@@ -1,20 +1,28 @@
 package it.davideromito.crawler.model;
 
 /**
- * Created by davideromito on 28/06/16.
+ * Created by dromito on 01/07/2016.
  */
 public class Page {
     private String url;
     private String title;
     private String description;
     private String keywords;
-    private String dcTitle;
-    private String dcDescription;
-    //TODO extend
+    private DC dc;
+    private EGMS egms;
+    private WT wt;
+    private DCSext dcSext;
 
-    public Page(){}
 
-    public Page(String url){
+    public Page(){
+        this.dc = new DC();
+        this.egms = new EGMS();
+        this.wt = new WT();
+        this.dcSext = new DCSext();
+    }
+
+    public Page(String url) {
+        this();
         this.url = url;
     }
 
@@ -50,32 +58,36 @@ public class Page {
         this.keywords = keywords;
     }
 
-    public String getDcTitle() {
-        return dcTitle;
+    public DC getDc() {
+        return dc;
     }
 
-    public void setDcTitle(String dcTitle) {
-        this.dcTitle = dcTitle;
+    public void setDc(DC dc) {
+        this.dc = dc;
     }
 
-    public String getDcDescription() {
-        return dcDescription;
+    public EGMS getEgms() {
+        return egms;
     }
 
-    public void setDcDescription(String dcDescription) {
-        this.dcDescription = dcDescription;
+    public void setEgms(EGMS egms) {
+        this.egms = egms;
     }
 
-    @Override
-    public String toString() {
-        return "Page{" +
-                "url='" + url + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", keywords='" + keywords + '\'' +
-                ", dcTitle='" + dcTitle + '\'' +
-                ", dcDescription='" + dcDescription + '\'' +
-                '}';
+    public WT getWt() {
+        return wt;
     }
 
+    public void setWt(WT wt) {
+        this.wt = wt;
+    }
+
+    public DCSext getDcSext() {
+        return dcSext;
+    }
+
+    public void setDcSext(DCSext dcSext) {
+        this.dcSext = dcSext;
+    }
 }
+
