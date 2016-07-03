@@ -23,7 +23,7 @@ public class PagesRetriever {
      * @return set of objects page
      * @throws Exception
      */
-    public Set<Page> retrievePages(Set<String> urlSet) throws Exception {
+    public Set<Page> retrievePages(Set<String> urlSet)  {
         ExecutorService pool = Executors.newFixedThreadPool(NUMBER_THREAD_POOL);
         Set<Future<Page>> set = new HashSet<Future<Page>>();
         for (String url : urlSet) {
@@ -33,7 +33,13 @@ public class PagesRetriever {
         }
         Set<Page> pages = new HashSet<Page>();
         for (Future<Page> future : set) {
-            pages.add(future.get());
+            try {
+                pages.add(future.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
         return pages;
     }
