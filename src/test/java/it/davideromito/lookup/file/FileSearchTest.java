@@ -1,6 +1,7 @@
-package it.davideromito.lookup;
+package it.davideromito.lookup.file;
 
 import it.davideromito.Tags;
+import it.davideromito.lookup.file.FileSearch;
 import org.junit.Before;
 import org.junit.Test;
 

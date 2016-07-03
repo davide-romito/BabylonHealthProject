@@ -1,6 +1,7 @@
-package it.davideromito.lookup;
+package it.davideromito.lookup.file;
 
 import it.davideromito.Tags;
+import it.davideromito.lookup.Findable;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -26,12 +27,12 @@ public class FileSearch implements Findable {
      * @return list of string
      * @throws FileNotFoundException
      */
-    public List<String> search(Tags tag, String element) throws FileNotFoundException {
+    public List<String> search(Tags tag, String element) {
         List<String> output = new ArrayList<String>();
         String strToSearch = createStringToSearch(tag, element);
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
         try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
             while ((line = br.readLine()) != null) {
                 if (line.toLowerCase().contains(strToSearch.toLowerCase())) {
                     output.add(line);
@@ -51,11 +52,11 @@ public class FileSearch implements Findable {
      * @return list of elements
      * @throws FileNotFoundException
      */
-    public List<String> search(String element) throws FileNotFoundException {
+    public List<String> search(String element) {
         List<String> output = new ArrayList<String>();
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
         try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
             while ((line = br.readLine()) != null) {
                 for (Tags tag : Tags.values()) {
                     String strToSearch = createStringToSearch(tag, element);
