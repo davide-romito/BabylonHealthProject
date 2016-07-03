@@ -4,6 +4,9 @@ package it.davideromito;
  * Tags to retrieve from the HTML pages
  */
 public enum Tags {
+    URL("url"),
+    TITLE("title"),
+
     DESCRIPTION("description"),
     KEYWORDS("keywords"),
     DC_TITLE("DC.title"),
@@ -30,4 +33,6 @@ public enum Tags {
 
     Tags(String label) {
     }
+
+
 }
