@@ -30,6 +30,7 @@ public class FileSave implements Save {
         BufferedWriter bw = new BufferedWriter(fw);
         for (String string : setOfString){
             bw.write(string);
+            bw.newLine();
         }
         bw.close();
     }
