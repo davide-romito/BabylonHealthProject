@@ -32,7 +32,13 @@ public enum Tags {
     DCSEXT_BM_SECTION3("DCSext.BM_Section3");
 
     Tags(String label) {
+        this.label = label;
     }
 
+    private String label;
+
+    public String label() {
+        return label;
+    }
 
 }
