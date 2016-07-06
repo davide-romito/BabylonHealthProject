@@ -68,4 +68,9 @@ public class Crawler {
         }
         System.out.println("END SAVE PHASE");
     }
+
+    public static void main(String[] args) {
+        Crawler c = new Crawler();
+        c.generateKnowledge();
+    }
 }
