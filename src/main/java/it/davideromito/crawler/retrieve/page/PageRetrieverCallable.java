@@ -1,6 +1,6 @@
 package it.davideromito.crawler.retrieve.page;
 
-import it.davideromito.crawler.model.Page;
+import it.davideromito.model.Page;
 import it.davideromito.crawler.parsing.Parsing;
 import it.davideromito.crawler.parsing.jsoup.JsoupParsing;
 

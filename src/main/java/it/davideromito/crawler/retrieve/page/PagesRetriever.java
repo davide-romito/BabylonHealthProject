@@ -1,6 +1,6 @@
 package it.davideromito.crawler.retrieve.page;
 
-import it.davideromito.crawler.model.Page;
+import it.davideromito.model.Page;
 
 import java.util.HashSet;
 import java.util.Set;

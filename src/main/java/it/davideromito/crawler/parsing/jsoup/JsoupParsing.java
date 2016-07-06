@@ -2,7 +2,7 @@
 package it.davideromito.crawler.parsing.jsoup;
 
 import it.davideromito.Tags;
-import it.davideromito.crawler.model.Page;
+import it.davideromito.model.Page;
 import it.davideromito.crawler.parsing.Parsing;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,4 +1,4 @@
-package it.davideromito.crawler.model;
+package it.davideromito.model;
 
 /**
  * Created by dromito on 01/07/2016.

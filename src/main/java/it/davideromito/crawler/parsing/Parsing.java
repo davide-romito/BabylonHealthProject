@@ -1,6 +1,6 @@
 package it.davideromito.crawler.parsing;
 
-import it.davideromito.crawler.model.Page;
+import it.davideromito.model.Page;
 
 import java.io.IOException;
 
