@@ -1,8 +1,8 @@
 package it.davideromito.crawler;
 
 import it.davideromito.Constant;
-import it.davideromito.crawler.converter.JSONConverter;
-import it.davideromito.crawler.model.Page;
+import it.davideromito.converter.JSONConverter;
+import it.davideromito.model.Page;
 import it.davideromito.crawler.retrieve.page.PagesRetriever;
 import it.davideromito.crawler.retrieve.link.Retrieve;
 import it.davideromito.crawler.retrieve.link.RetrieveImpl;
@@ -13,7 +13,6 @@ import it.davideromito.crawler.save.Save;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by davideromito on 28/06/16.
@@ -68,10 +67,5 @@ public class Crawler {
             e.printStackTrace();
         }
         System.out.println("END SAVE PHASE");
-    }
-
-    public static void main(String[] args) {
-        Crawler c = new Crawler();
-        c.generateKnowledge();
     }
 }
