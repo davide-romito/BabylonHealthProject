@@ -21,7 +21,7 @@ public class CacheImpl {
         cache = CacheBuilder.newBuilder().build(
                 new CacheLoader<Tags, LoadingCache<String, Set<String>>>() {
                     public LoadingCache<String, Set<String>> load(Tags tag) throws Exception {
-                        return CacheBuilder.newBuilder().maximumSize(50)
+                        return CacheBuilder.newBuilder().maximumSize(Tags.values().length)
                                 .refreshAfterWrite(1, TimeUnit.DAYS).build(new CacheLoader<String, Set<String>>() {
                                     public Set<String> load(String s) throws Exception {
                                         return new TreeSet<String>();
@@ -31,7 +31,7 @@ public class CacheImpl {
                 });
 
         for (Tags tag : Tags.values()) {
-            LoadingCache<String, Set<String>> inCache = CacheBuilder.newBuilder().maximumSize(10000)
+            LoadingCache<String, Set<String>> inCache = CacheBuilder.newBuilder().maximumSize(100000)
                     .refreshAfterWrite(1, TimeUnit.DAYS).build(new CacheLoader<String, Set<String>>() {
                         public Set<String> load(String s) throws Exception {
                             return new TreeSet<String>();
