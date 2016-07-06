@@ -1,4 +1,4 @@
-package it.davideromito.crawler.converter;
+package it.davideromito.converter;
 
 import com.google.gson.Gson;
 
@@ -34,4 +34,13 @@ public final class JSONConverter {
         }
         return stringSet;
     }
+
+
+    public static <T> T fromJson(String s, Class<T> clazz)
+    {
+        Gson gson = new Gson();
+        T object = gson.fromJson(s, clazz);
+        return object;
+    }
+
 }

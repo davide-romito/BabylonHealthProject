@@ -1,4 +1,4 @@
-package it.davideromito.crawler.converter;
+package it.davideromito.converter;
 
 import org.junit.Before;
 import org.junit.Test;
