@@ -10,4 +10,8 @@ import java.util.List;
  */
 public interface Cache extends Findable{
     void insert(String elementToSearch, Tags tag, List listOfElement);
+
+    void invalidate();
+
+    void populate();
 }
