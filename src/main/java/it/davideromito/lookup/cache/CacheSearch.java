@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by dromito on 05/07/2016.
  */
-public class CacheSearch {
+public class CacheSearch implements Cache{
     public void insert(String elementToSearch, Tags tag, List listOfElement) {
         //TODO
     }
