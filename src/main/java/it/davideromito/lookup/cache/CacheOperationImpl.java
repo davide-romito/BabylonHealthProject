@@ -1,6 +1,5 @@
 package it.davideromito.lookup.cache;
 
-import com.google.common.cache.LoadingCache;
 import it.davideromito.Constant;
 import it.davideromito.Tags;
 import it.davideromito.converter.JSONConverter;
