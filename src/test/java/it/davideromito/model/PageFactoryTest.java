@@ -27,7 +27,7 @@ public class PageFactoryTest {
         assertEquals(URL, PageFactory.returnTagValue(p, Tags.URL));
         assertEquals(TITLE, PageFactory.returnTagValue(p, Tags.TITLE));
         assertEquals(KEYWORDS, PageFactory.returnTagValue(p, Tags.KEYWORDS));
-        assertEquals("", PageFactory.returnTagValue(p, Tags.DESCRIPTION));
+        assertNull(PageFactory.returnTagValue(p, Tags.DESCRIPTION));
         assertEquals(DESCRIPTION, PageFactory.returnTagValue(p, Tags.DC_DESCRIPTION));
     }
 
