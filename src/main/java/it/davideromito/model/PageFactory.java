@@ -85,7 +85,7 @@ public class PageFactory {
                 strToReturn = p.getDcSext().getBmSection3();
                 break;
         }
-        return strToReturn;
+        return strToReturn != null ? strToReturn : "";
     }
 
 }
