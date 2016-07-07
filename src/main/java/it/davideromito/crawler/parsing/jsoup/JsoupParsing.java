@@ -9,9 +9,6 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-/**
- * Created by davideromito on 28/06/16.
- */
 public class JsoupParsing implements Parsing {
     private static final String NAME = "name";
     private static final String CONTENT = "content";

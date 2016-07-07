@@ -14,9 +14,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by davideromito on 28/06/16.
- */
 public class Crawler {
     public void generateKnowledge(){
         long start = System.nanoTime();
@@ -67,10 +64,5 @@ public class Crawler {
             e.printStackTrace();
         }
         System.out.println("END SAVE PHASE");
-    }
-
-    public static void main(String[] args) {
-        Crawler c = new Crawler();
-        c.generateKnowledge();
     }
 }

@@ -35,9 +35,14 @@ public final class JSONConverter {
         return stringSet;
     }
 
-
-    public static <T> T fromJson(String s, Class<T> clazz)
-    {
+    /**
+     * Given a json string and a pojo, the method will return the
+     * @param s
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> T fromJson(String s, Class<T> clazz) {
         Gson gson = new Gson();
         T object = gson.fromJson(s, clazz);
         return object;

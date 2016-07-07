@@ -1,5 +1,7 @@
 package it.davideromito.crawler.retrieve.link;
 
+import it.davideromito.Constant;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,15 +11,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by davideromito on 28/06/16.
- */
 public class RetrieveImpl implements Retrieve{
-    private final static String HTML_A_HREF_TAG_PATTERN = "href=\"(.*?)\"";
-
-
     public Set<String> retrieveSetOfLinks(String urlPage, String pattern) throws IOException {
-        Set<String> linksSet = new HashSet<String>();
+        Set<String> linksSet = new HashSet<>();
         URL urlElement = new URL(urlPage);
         BufferedReader in = new BufferedReader(new InputStreamReader(urlElement.openStream()));
         String inputLine;
@@ -30,8 +26,13 @@ public class RetrieveImpl implements Retrieve{
         return  linksSet;
     }
 
-    private String retrieveLink(String line) {
-        Pattern patternLink = Pattern.compile(HTML_A_HREF_TAG_PATTERN);
+    /**
+     * Retrieve the link from a line
+     * @param line
+     * @return url
+     */
+    protected String retrieveLink(String line) {
+        Pattern patternLink = Pattern.compile(Constant.HTML_A_HREF_TAG_PATTERN);
         Matcher matcherLink = patternLink.matcher(line);
         String link = "";
         while (matcherLink.find()) {
