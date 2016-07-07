@@ -9,4 +9,7 @@ public interface Constant {
     String HOMEPAGE = ROOT_PAGE + "hub.aspx";
 
     String FILE_NAME = "FILE";
+
+    Integer NUMBER_THREAD_POOL = 3;
+    String HTML_A_HREF_TAG_PATTERN = "href=\"(.*?)\"";
 }

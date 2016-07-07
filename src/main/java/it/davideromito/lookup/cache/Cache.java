@@ -3,11 +3,15 @@ package it.davideromito.lookup.cache;
 import it.davideromito.Tags;
 import it.davideromito.lookup.Findable;
 
-import java.util.List;
+import java.util.Set;
 
-/**
- * Created by davideromito on 03/07/16.
- */
-public interface Cache extends Findable{
-    void insert(String elementToSearch, Tags tag, List listOfElement);
+public interface Cache extends Findable {
+    /**
+     * Insert with the key elementToSearch the set of listOfElement in the cache tag
+     *
+     * @param elementToSearch element to search
+     * @param tag             key of the search
+     * @param listOfElement   set of element to add in the cache
+     */
+    void insert(String elementToSearch, Tags tag, Set listOfElement);
 }

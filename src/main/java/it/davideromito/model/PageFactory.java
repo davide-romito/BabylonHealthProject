@@ -3,10 +3,10 @@ package it.davideromito.model;
 import it.davideromito.Tags;
 
 /**
- * Created by davideromito on 06/07/16.
+ * Class to extract the value of a tag in the Page model
  */
 public class PageFactory {
-    public String returnTagValue(Page p, Tags tag) {
+    public static String returnTagValue(Page p, Tags tag) {
         String strToReturn = "";
         switch (tag) {
             case URL:

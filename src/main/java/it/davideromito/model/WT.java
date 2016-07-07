@@ -1,8 +1,5 @@
 package it.davideromito.model;
 
-/**
- * Created by dromito on 01/07/2016.
- */
 public class WT {
     private String ti;
     private String cgN;

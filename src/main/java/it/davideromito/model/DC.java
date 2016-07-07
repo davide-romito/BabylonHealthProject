@@ -1,8 +1,5 @@
 package it.davideromito.model;
 
-/**
- * Created by dromito on 01/07/2016.
- */
 public class DC {
     private String title;
     private String description;

@@ -1,8 +1,5 @@
 package it.davideromito.model;
 
-/**
- * Created by dromito on 01/07/2016.
- */
 public class Page {
     private String url;
     private String title;

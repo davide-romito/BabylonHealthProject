@@ -10,23 +10,28 @@ import java.util.concurrent.ExecutionException;
  * Created by dromito on 05/07/2016.
  */
 public class CacheSearch implements Cache{
-    public void insert(String elementToSearch, Tags tag, List listOfElement) {
-        //TODO
+    public void insert(String elementToSearch, Tags tag, Set listOfElement) {
+        try {
+            LoadingCache<String, Set<String>> tagCache = CacheImpl.getInstance().getTagCache(tag);
+            tagCache.put(elementToSearch, listOfElement);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
-    public List<String> search(Tags tag, String element) {
-        Set<String> strings = new TreeSet<String>();
+    public Set<String> search(Tags tag, String element) {
+        Set<String> strings = new TreeSet<>();
         try {
             LoadingCache<String, Set<String>> tagCache = CacheImpl.getInstance().getTagCache(tag);
             strings = retrievePrefix(tagCache, element);
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return new ArrayList<String>(strings);
+        return new TreeSet<>(strings);
     }
 
-    public List<String> search(String element) {
-        Set<String> strings = new TreeSet<String>();
+    public Set<String> search(String element) {
+        Set<String> strings = new TreeSet<>();
         try {
             LoadingCache<Tags, LoadingCache<String, Set<String>>> cache = CacheImpl.getInstance().getCache();
             for (Tags tag : Tags.values()) {
@@ -36,12 +41,12 @@ public class CacheSearch implements Cache{
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return new ArrayList<String>(strings);
+        return new TreeSet<>(strings);
     }
 
     private Set<String> retrievePrefix(LoadingCache<String, Set<String>> cache, String element)
             throws ExecutionException {
-        Set<String> output = new TreeSet<String>();
+        Set<String> output = new TreeSet<>();
         for (String s : cache.asMap().keySet()) {
             if (s.startsWith(element)) {
                 output.addAll(cache.get(s));

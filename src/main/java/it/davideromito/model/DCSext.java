@@ -1,8 +1,5 @@
 package it.davideromito.model;
 
-/**
- * Created by dromito on 01/07/2016.
- */
 public class DCSext {
     private String realUrl;
     private String server;
