@@ -78,7 +78,8 @@ public class FileSearch implements Findable {
      */
     private void searchValue(Tags tag, Set<String> output, String strToSearch, String line) {
         Page page = JSONConverter.fromJson(line, Page.class);
-        if (PageFactory.returnTagValue(page, tag).toLowerCase().contains(strToSearch.toLowerCase())) {
+        String tagValue = PageFactory.returnTagValue(page, tag);
+        if (tagValue != null && tagValue.toLowerCase().contains(strToSearch.toLowerCase())) {
             output.add(line);
         }
     }

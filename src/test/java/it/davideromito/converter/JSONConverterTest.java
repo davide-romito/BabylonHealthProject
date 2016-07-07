@@ -9,24 +9,29 @@ import static org.junit.Assert.*;
  * Test class for JSONConverter
  */
 public class JSONConverterTest {
-    TestClass tc;
-
-    @Before
-    public void setUp() throws Exception {
+    @Test
+    public void toJSON() throws Exception {
+        TestClass tc;
         tc = new TestClass();
         tc.setField1("value1");
         tc.setField2("value2");
         tc.setField3("value3");
-    }
-
-    @Test
-    public void toJSON() throws Exception {
         String resultString = JSONConverter.toJSON(tc);
         String expectedString = "{\"field1\":\"value1\",\"field2\":\"value2\",\"field3\":\"value3\"}";
         assertEquals(expectedString, resultString);
     }
 
-    private class TestClass{
+    @Test
+    public void fromJson() throws Exception {
+        String jsonValue = "{\"field1\":\"value1\",\"field2\":\"value2\",\"field3\":\"value3\"}";
+        TestClass testClass = JSONConverter.fromJson(jsonValue, TestClass.class);
+        assertNotNull(testClass);
+        assertEquals("value1", testClass.getField1());
+        assertEquals("value2", testClass.getField2());
+        assertEquals("value3", testClass.getField3());
+    }
+
+    private class TestClass {
         private String field1;
         private String field2;
         private String field3;

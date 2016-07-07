@@ -1,17 +1,13 @@
 package it.davideromito.lookup.file;
 
 import it.davideromito.Tags;
-import it.davideromito.lookup.file.FileSearch;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by davideromito on 03/07/16.
- */
 public class FileSearchTest {
     private static final String FILE_NAME = "FILE_TEST";
     FileSearch fs;
@@ -23,38 +19,31 @@ public class FileSearchTest {
 
     @Test
     public void testSearchSingleTag() throws Exception {
-        List<String> listResult = fs.search(Tags.DESCRIPTION, "description1");
-        assertEquals("{\"url\":\"url1_mock\",\"title\":\"title1_mock\",\"description\":\"description1_mock\",\"keywords\":\"keywords1_mock\"}", listResult.get(0));
+        Set<String> listResult = fs.search(Tags.DESCRIPTION, "description1");
+        assertTrue(listResult.contains("{\"url\":\"url1_mock\",\"title\":\"title1_mock\",\"description\":\"description1_mock\",\"keywords\":\"keywords1_mock\"}"));
 
         listResult.clear();
         listResult = fs.search(Tags.KEYWORDS, "key");
-        assertEquals(3,listResult.size());
-        assertEquals("{\"url\":\"url1_mock\",\"title\":\"title1_mock\",\"description\":\"description1_mock\",\"keywords\":\"keywords1_mock\"}", listResult.get(0));
-        assertEquals("{\"url\":\"url3_mock\",\"title\":\"mock\",\"description\":\"description3_mock\",\"keywords\":\"keywords3_mock\"}", listResult.get(1));
-        assertEquals("{\"url\":\"mock\",\"title\":\"title4_mock\",\"description\":\"description_4mock\",\"keywords\":\"keywords4_mock\"}", listResult.get(2));
+        assertEquals(3, listResult.size());
+        assertTrue(listResult.contains("{\"url\":\"url1_mock\",\"title\":\"title1_mock\",\"description\":\"description1_mock\",\"keywords\":\"keywords1_mock\"}"));
+        assertTrue(listResult.contains("{\"url\":\"url3_mock\",\"title\":\"mock\",\"description\":\"description3_mock\",\"keywords\":\"keywords3_mock\"}"));
+        assertTrue(listResult.contains("{\"url\":\"mock\",\"title\":\"title4_mock\",\"description\":\"description_4mock\",\"keywords\":\"keywords4_mock\"}"));
     }
 
     @Test
     public void testSearchMultiTag() throws Exception {
-        List<String> listResult = fs.search("string");
-        assertEquals("{\"url\":\"string\",\"title\":\"string\",\"description\":\"string\",\"keywords\":\"string\"}", listResult.get(0));
+        Set<String> listResult = fs.search("string");
+        assertTrue(listResult.contains("{\"url\":\"string\",\"title\":\"string\",\"description\":\"string\",\"keywords\":\"string\"}"));
 
         listResult.clear();
         listResult = fs.search("mock");
-        assertEquals(3,listResult.size());
-        assertEquals("{\"url\":\"url2_mock\",\"title\":\"title2_mock\",\"description\":\"description2_mock\",\"keywords\":\"mock\"}", listResult.get(0));
-        assertEquals("{\"url\":\"url3_mock\",\"title\":\"mock\",\"description\":\"description3_mock\",\"keywords\":\"keywords3_mock\"}", listResult.get(1));
-        assertEquals("{\"url\":\"mock\",\"title\":\"title4_mock\",\"description\":\"description_4mock\",\"keywords\":\"keywords4_mock\"}", listResult.get(2));
+        assertEquals(4, listResult.size());
+        assertTrue(listResult.contains("{\"url\":\"url1_mock\",\"title\":\"title1_mock\",\"description\":\"description1_mock\",\"keywords\":\"keywords1_mock\"}"));
+        assertTrue(listResult.contains("{\"url\":\"url2_mock\",\"title\":\"title2_mock\",\"description\":\"description2_mock\",\"keywords\":\"mock\"}"));
+        assertTrue(listResult.contains("{\"url\":\"url3_mock\",\"title\":\"mock\",\"description\":\"description3_mock\",\"keywords\":\"keywords3_mock\"}"));
+        assertTrue(listResult.contains("{\"url\":\"mock\",\"title\":\"title4_mock\",\"description\":\"description_4mock\",\"keywords\":\"keywords4_mock\"}"));
 
 
-    }
-
-    @Test
-    public void testCreateStringToSearch() throws Exception {
-        String elementToSearch = "elementToSearch";
-        String tagToSearch = Tags.DESCRIPTION.name();
-        String resultString = fs.createStringToSearch(Tags.DESCRIPTION, elementToSearch);
-        assertEquals("\"" + tagToSearch + "\":\"" + elementToSearch, resultString);
     }
 
 }

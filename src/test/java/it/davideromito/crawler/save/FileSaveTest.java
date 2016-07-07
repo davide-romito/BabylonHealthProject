@@ -50,7 +50,7 @@ public class FileSaveTest {
 
     @Test
     public void testSaveString() throws Exception {
-        Set<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         String string1 = "MOCK_STRING_1";
         String string2 = "MOCK_STRING_1";
         String string3 = "MOCK_STRING_1";
