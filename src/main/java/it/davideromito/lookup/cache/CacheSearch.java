@@ -23,7 +23,11 @@ public class CacheSearch implements Cache{
         Set<String> strings = new TreeSet<>();
         try {
             LoadingCache<String, Set<String>> tagCache = CacheImpl.getInstance().getTagCache(tag);
-            strings = retrievePrefix(tagCache, element);
+            strings.addAll(tagCache.get(element));
+            if (strings.isEmpty()){
+                strings = retrievePrefix(tagCache, element);
+                //TODO scrematura
+            }
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
@@ -36,6 +40,7 @@ public class CacheSearch implements Cache{
             LoadingCache<Tags, LoadingCache<String, Set<String>>> cache = CacheImpl.getInstance().getCache();
             for (Tags tag : Tags.values()) {
                 LoadingCache<String, Set<String>> stringSetLoadingCache = cache.get(tag);
+                //TODO change this based on the previous one
                 strings.addAll(retrievePrefix(stringSetLoadingCache, element));
             }
         } catch (ExecutionException e) {
@@ -48,7 +53,7 @@ public class CacheSearch implements Cache{
             throws ExecutionException {
         Set<String> output = new TreeSet<>();
         for (String s : cache.asMap().keySet()) {
-            if (s.startsWith(element.toLowerCase())) {
+            if (element.toLowerCase().startsWith(s)) {
                 output.addAll(cache.get(s));
             }
         }
