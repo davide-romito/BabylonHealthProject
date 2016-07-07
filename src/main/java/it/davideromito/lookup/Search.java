@@ -6,30 +6,29 @@ import it.davideromito.lookup.cache.Cache;
 import it.davideromito.lookup.cache.CacheSearch;
 import it.davideromito.lookup.file.FileSearch;
 
-import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
-/**
- * Created by davideromito on 03/07/16.
- */
 public class Search {
     private String file;
 
     public Search() {
-        this.file= Constant.FILE_NAME;
+        this.file = Constant.FILE_NAME;
     }
 
-    public Search(String file){
+    public Search(String file) {
         this.file = file;
     }
 
-    public Set<String> performSearch(String element, Tags tag){
+    public Set<String> performSearch(String element, Tags tag) {
         Cache cache = new CacheSearch();
-        Set<String> result = cache.search(tag, element);
-        if (result.isEmpty()) {
+        Set<String> result = new TreeSet<>();
+        if (cache.hasElement(tag, element) || cache.hasSubElement(tag, element)) {
+            result.addAll(cache.search(tag, element));
+        } else {
             Findable findOnFile = new FileSearch(file);
-            result = findOnFile.search(tag, element);
-            cache.insert(element,tag,result);
+            result.addAll(findOnFile.search(tag, element));
+            cache.insert(element, tag, result);
         }
         return result;
     }
