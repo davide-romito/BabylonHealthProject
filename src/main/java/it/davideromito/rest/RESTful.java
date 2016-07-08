@@ -11,11 +11,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Set;
 
-//@Path("/")
+@Path("/")
 public class RESTful {
     @HEAD
     @Produces("text/plain")
-    @Path("/generate-file")
+    @Path("generate-file")
     public Response generateFile() {
         Crawler c = new Crawler();
         c.generateKnowledge();
@@ -24,7 +24,7 @@ public class RESTful {
 
     @HEAD
     @Produces("text/plain")
-    @Path("/populate-cache")
+    @Path("populate-cache")
     public Response populateCache() {
         CacheOperation co = new CacheOperationImpl();
         co.populate();
@@ -33,7 +33,7 @@ public class RESTful {
 
     @HEAD
     @Produces("text/plain")
-    @Path("/invalidate-cache")
+    @Path("invalidate-cache")
     public Response invalidateCache() {
         CacheOperation co = new CacheOperationImpl();
         co.invalidate();
@@ -42,7 +42,7 @@ public class RESTful {
 
     @GET
     @Produces("text/html")
-    @Path("/tags")
+    @Path("all-tags")
     public Response getAllTags() {
         StringBuilder sb = new StringBuilder();
         for (Tags tag : Tags.values()) {
@@ -53,7 +53,7 @@ public class RESTful {
 
     @GET
     @Produces("text/html")
-    @Path("/search/{element}")
+    @Path("search/{element}")
     public Response searchInAll(@PathParam("element") String element) {
         StringBuilder sb = new StringBuilder();
         Search s = new Search();
@@ -68,7 +68,7 @@ public class RESTful {
 
     @GET
     @Produces("text/html")
-    @Path("/{tag}/{element}")
+    @Path("search/{element}/{tag}")
     public Response search(@PathParam("tag") String tag, @PathParam("element") String element) {
         StringBuilder sb = new StringBuilder();
         Search s = new Search();
