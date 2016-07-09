@@ -3,6 +3,7 @@ package it.davideromito.lookup.file;
 import it.davideromito.Tags;
 import it.davideromito.converter.JSONConverter;
 import it.davideromito.lookup.Findable;
+import it.davideromito.lookup.SearchUtil;
 import it.davideromito.model.Page;
 import it.davideromito.model.PageFactory;
 
@@ -34,7 +35,7 @@ public class FileSearch implements Findable {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
-                searchValue(tag, output, element, line);
+                SearchUtil.searchValue(tag, output, element, line);
             }
             br.close();
         } catch (IOException e) {
@@ -57,7 +58,7 @@ public class FileSearch implements Findable {
             String line;
             while ((line = br.readLine()) != null) {
                 for (Tags tag : Tags.values()) {
-                    searchValue(tag, output, element, line);
+                    SearchUtil.searchValue(tag, output, element, line);
                 }
             }
             br.close();
@@ -65,23 +66,6 @@ public class FileSearch implements Findable {
             e.printStackTrace();
         }
         return output;
-    }
-
-    /**
-     * Check in the tag of the opject page if the strToSearch is present. In case add the line to the
-     * set output
-     *
-     * @param tag
-     * @param output
-     * @param strToSearch
-     * @param line
-     */
-    private void searchValue(Tags tag, Set<String> output, String strToSearch, String line) {
-        Page page = JSONConverter.fromJson(line, Page.class);
-        String tagValue = PageFactory.returnTagValue(page, tag);
-        if (tagValue != null && tagValue.toLowerCase().contains(strToSearch.toLowerCase())) {
-            output.add(line);
-        }
     }
 
 }
