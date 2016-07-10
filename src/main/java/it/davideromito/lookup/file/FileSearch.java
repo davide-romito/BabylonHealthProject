@@ -2,15 +2,13 @@ package it.davideromito.lookup.file;
 
 import it.davideromito.Tags;
 import it.davideromito.converter.JSONConverter;
+import it.davideromito.crawler.Crawler;
 import it.davideromito.lookup.Findable;
 import it.davideromito.lookup.SearchUtil;
 import it.davideromito.model.Page;
 import it.davideromito.model.PageFactory;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,6 +17,12 @@ public class FileSearch implements Findable {
 
     public FileSearch(String file) {
         this.file = file;
+        /* Check in case the file doesn't exist */
+        File f = new File(this.file);
+        if(!f.exists()){
+            Crawler c = new Crawler();
+            c.generateKnowledge();
+        }
     }
 
     /**
