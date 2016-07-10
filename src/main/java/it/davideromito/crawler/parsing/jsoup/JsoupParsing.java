@@ -13,6 +13,12 @@ public class JsoupParsing implements Parsing {
     private static final String NAME = "name";
     private static final String CONTENT = "content";
 
+    /**
+     * given an URl, retrieve the element of the page and create and object Page
+     * @param url
+     * @return the object Page with all the elemnt retrieved from the url
+     * @throws IOException
+     */
     public Page retrievePage(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         Page page = new Page(url);

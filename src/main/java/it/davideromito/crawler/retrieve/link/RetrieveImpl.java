@@ -11,7 +11,15 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RetrieveImpl implements Retrieve{
+public class RetrieveImpl implements Retrieve {
+    /**
+     * Given a page urlPage, retrieve the element corresponding with the pattera
+     *
+     * @param urlPage
+     * @param pattern
+     * @return Set of string with the element pattern
+     * @throws IOException
+     */
     public Set<String> retrieveSetOfLinks(String urlPage, String pattern) throws IOException {
         Set<String> linksSet = new HashSet<>();
         URL urlElement = new URL(urlPage);
@@ -23,11 +31,12 @@ public class RetrieveImpl implements Retrieve{
             }
         }
         in.close();
-        return  linksSet;
+        return linksSet;
     }
 
     /**
      * Retrieve the link from a line
+     *
      * @param line
      * @return url
      */

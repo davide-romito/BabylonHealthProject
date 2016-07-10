@@ -12,4 +12,7 @@ public interface Constant {
 
     Integer NUMBER_THREAD_POOL = 3;
     String HTML_A_HREF_TAG_PATTERN = "href=\"(.*?)\"";
+
+    String HREF_BODYMAP = "<a href=\"BodyMap.aspx";
+    String HREF_CONDITIONS = "<a href=\"/conditions";
 }

@@ -20,6 +20,16 @@ public class Search {
         this.file = file;
     }
 
+    /**
+     * Search in the cache if the element is present or not. In case it is present, it retrieves the element in the cache
+     * and return the element retrieved.
+     * In case the element is not present in the cache, it search in the file if it is present and in case insert that element
+     * in the cache
+     *
+     * @param element
+     * @param tag
+     * @return set of string
+     */
     public Set<String> performSearch(String element, Tags tag) {
         Cache cache = new CacheSearch();
         Set<String> result = new TreeSet<>();

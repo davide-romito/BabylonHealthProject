@@ -15,47 +15,42 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Crawler {
-    public void generateKnowledge(){
+    /**
+     * This method extract the informations from the pages, and then save this information in a file
+     */
+    public void generateKnowledge() {
         long start = System.nanoTime();
         Set<Page> pages = extractInformations();
         saveInformations(pages);
-        System.out.println("Knowledge generation in "+((System.nanoTime()-start)/Math.pow(10,9))+ " seconds");
+        System.out.println("Knowledge generation in " + ((System.nanoTime() - start) / Math.pow(10, 9)) + " seconds");
     }
 
 
-    protected Set<Page> extractInformations(){
+    protected Set<Page> extractInformations() {
         Retrieve retrieve = new RetrieveImpl();
 
-        System.out.println("START RETRIEVE link from HOMEPAGE");
-        Set<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         try {
-            set = retrieve.retrieveSetOfLinks(Constant.HOMEPAGE, "<a href=\"BodyMap.aspx");
+            set = retrieve.retrieveSetOfLinks(Constant.HOMEPAGE, Constant.HREF_BODYMAP);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("END RETRIEVE link from HOMEPAGE");
 
-        System.out.println("START RETRIEVE link from VARIOUS PAGES");
-        Set<String> setLink = new HashSet<String>();
+        Set<String> setLink = new HashSet<>();
         for (String s : set) {
             try {
-                setLink.addAll(retrieve.retrieveSetOfLinks(Constant.ROOT_PAGE+s, "<a href=\"/conditions" ));
+                setLink.addAll(retrieve.retrieveSetOfLinks(Constant.ROOT_PAGE + s, Constant.HREF_CONDITIONS));
             } catch (IOException e) {
-                System.out.println(Constant.ROOT_PAGE+s);
+                System.out.println(Constant.ROOT_PAGE + s);
                 e.printStackTrace();
             }
         }
-        System.out.println("END RETRIEVE link from VARIOUS PAGES");
 
-        System.out.println("START RETRIEVE INFORMATION from VARIOUS PAGES");
         PagesRetriever pr = new PagesRetriever(Constant.BASE_PAGE);
-        Set<Page> pages = pr.retrievePages(setLink);
-        System.out.println("END RETRIEVE INFORMATION from VARIOUS PAGES");
-        return pages;
+        return pr.retrievePages(setLink);
     }
 
-    protected void saveInformations(Set pages){
-        System.out.println("START SAVE PHASE");
+    protected void saveInformations(Set pages) {
         Save save;
         try {
             save = new FileSave(Constant.FILE_NAME);
@@ -63,6 +58,5 @@ public class Crawler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("END SAVE PHASE");
     }
 }
